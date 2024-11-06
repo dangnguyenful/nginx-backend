@@ -16,7 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-					mvn clean install
+					mvnw dependency:go-offline
+					mvnw package
 				'''
             }
         }
