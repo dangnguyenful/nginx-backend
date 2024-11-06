@@ -21,7 +21,7 @@ pipeline {
 			steps { 
 				sh '''
 					chmod +x ./mvnw
-					sudo chmod 666 /var/run/docker.sock
+					chmod 666 /var/run/docker.sock
 				''' 
 			} 
 		}
