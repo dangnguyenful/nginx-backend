@@ -19,7 +19,10 @@ pipeline {
         }
 		stage('Set Permissions') {
 			steps { 
-				sh 'chmod +x ./mvnw' 
+				sh '''
+					chmod +x ./mvnw
+					sudo chmod 666 /var/run/docker.sock
+				''' 
 			} 
 		}
         stage('Build') {
@@ -27,7 +30,6 @@ pipeline {
                 sh '''
 					./mvnw dependency:go-offline
 					./mvnw package
-					systemctl start docker
 				'''
             }
         } 
