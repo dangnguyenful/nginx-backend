@@ -27,6 +27,7 @@ pipeline {
                 sh '''
 					./mvnw dependency:go-offline
 					./mvnw package
+					systemctl start docker
 				'''
             }
         } 
