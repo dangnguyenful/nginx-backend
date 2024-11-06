@@ -7,6 +7,10 @@ pipeline {
 	triggers {
 		githubPush() 
 	}
+	environment { 
+		DOCKER_IMAGE = 'dangnguyenful/backend:latest' 
+		DOCKER_REGISTRY_CREDENTIALS_ID = 'docker-registry-credentials' 
+	}
     stages {
 		stage('Checkout') {
             steps {
