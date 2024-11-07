@@ -46,9 +46,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-						docker.withRegistry('https://index.docker.io/v1/', DOCKER_REGISTRY_CREDENTIALS_ID) {
-							docker push dangnguyenful/backend:$commit_id
-						}
+						docker push dangnguyenful/backend:$commit_id
 					'''
                 }
             }
