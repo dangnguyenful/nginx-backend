@@ -7,8 +7,7 @@ pipeline {
 	triggers {
 		githubPush() 
 	}
-	environment { 
-		DOCKER_IMAGE = 'dangnguyenful/backend:latest' 
+	environment {
 		DOCKER_REGISTRY_CREDENTIALS_ID = 'docker-id' 
 	}
     stages {
@@ -47,7 +46,9 @@ pipeline {
             steps {
                 script {
                     sh '''
-						docker push dangnguyenful/backend:$commit_id
+						docker.withRegistry('https://index.docker.io/v1/', DOCKER_REGISTRY_CREDENTIALS_ID) {
+							docker.image(dangnguyenful/backend:$commit_id).push()
+						}
 					'''
                 }
             }
