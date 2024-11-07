@@ -9,6 +9,7 @@ pipeline {
 	}
 	environment {
 		DOCKER_REGISTRY_CREDENTIALS_ID = 'docker-id' 
+		TAG = 'latest'
 	}
     stages {
 		stage('Checkout') {
@@ -36,6 +37,7 @@ pipeline {
                 script {
                     sh '''
 						commit_id=$(git rev-parse HEAD)
+						env.TAG = $commit_id
 						docker build -t backend:$commit_id .
 						docker tag backend:$commit_id dangnguyenful/backend:$commit_id
 					'''
@@ -47,7 +49,7 @@ pipeline {
                 script {
                     sh '''
 						docker.withRegistry('https://index.docker.io/v1/', DOCKER_REGISTRY_CREDENTIALS_ID) {
-							docker.image(dangnguyenful/backend:$commit_id).push()
+							docker.image("dangnguyenful/backend:${TAG}").push()
 						}
 					'''
                 }
