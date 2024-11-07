@@ -38,6 +38,7 @@ pipeline {
                     sh '''
 						commit_id=$(git rev-parse HEAD)
 						docker build -t backend:$commit_id .
+						docker tag backend:$commit_id backend:latest
 					'''
                 }
             }
