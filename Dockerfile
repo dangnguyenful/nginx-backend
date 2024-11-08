@@ -4,7 +4,8 @@ FROM openjdk:17-jdk-alpine
 # Create and change to the app directory.
 WORKDIR /usr/src/app
 
-COPY target/demo-0.0.1-SNAPSHOT.jar demo-0.0.1-SNAPSHOT.jar
+# Copy application dependency manifests to the container image.
+COPY target/ target/
 
 # Your app binds to port 8081
 EXPOSE 8081
