@@ -8,7 +8,7 @@ pipeline {
 		githubPush() 
 	}
 	environment { 
-        DOCKER_REGISTRY = 'dangnguyenful'
+        DOCKER_REGISTRY = 'https://index.docker.io/v1/'
 		DOCKER_REGISTRY_CREDENTIALS_ID = 'docker-id' 
 	}
     stages {
@@ -28,7 +28,10 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: DOCKER_REGISTRY_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-						sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+						sh '''
+							#!/bin/bash 
+							echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin "$DOCKER_REGISTRY" 
+						'''
                     }
                 }
             }
