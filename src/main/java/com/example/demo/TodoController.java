@@ -30,7 +30,7 @@ public class TodoController {
         return todoRepository.save(todo);
     }
 
-    @PutMapping("/modify/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
         logger.info("Modify !!!!!!!!!!!!");
         Optional<Todo> todo = todoRepository.findById(id);
@@ -45,14 +45,13 @@ public class TodoController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public Map<String, Boolean> deleteTodo(@PathVariable String id) {
+    @DeleteMapping("/{id}")
+    public Map<String, Boolean> deleteTodo(@PathVariable Long id) {
         logger.info("Delete !!!!!!!!!!!!");
         logger.info("Delete !!");
         logger.info(id.toString());
         logger.info("Delete !!");
-        long number = Long.parseLong(id);
-        todoRepository.deleteById(number);
+        todoRepository.deleteById(id);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
