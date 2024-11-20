@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/todos")
 public class TodoController {
     private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
 
@@ -20,17 +20,19 @@ public class TodoController {
 
     @GetMapping
     public List<Todo> getTodos() {
-        logger.info("Come on!!!");
+        logger.info("Get all !!!!!!!!!!!!");
         return todoRepository.findAll();
     }
 
     @PostMapping
     public Todo createTodo(@RequestBody Todo todo) {
+        logger.info("Create !!!!!!!!!!!!");
         return todoRepository.save(todo);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
+        logger.info("Modify !!!!!!!!!!!!");
         Optional<Todo> todo = todoRepository.findById(id);
         if (todo.isPresent()) {
             Todo todoToUpdate = todo.get();
@@ -45,6 +47,7 @@ public class TodoController {
 
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteTodo(@PathVariable Long id) {
+        logger.info("Delete !!!!!!!!!!!!");
         logger.info("Delete !!");
         logger.info(id.toString());
         logger.info("Delete !!");
