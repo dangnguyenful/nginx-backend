@@ -43,7 +43,6 @@ public class TodoController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteTodo(@PathVariable Long id) {
         logger.info("Delete !!");
