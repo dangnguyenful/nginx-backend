@@ -30,7 +30,7 @@ public class TodoController {
         return todoRepository.save(todo);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/modify/{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
         logger.info("Modify !!!!!!!!!!!!");
         Optional<Todo> todo = todoRepository.findById(id);
@@ -45,7 +45,7 @@ public class TodoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public Map<String, Boolean> deleteTodo(@PathVariable Long id) {
         logger.info("Delete !!!!!!!!!!!!");
         logger.info("Delete !!");
