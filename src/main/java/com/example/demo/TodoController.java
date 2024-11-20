@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/todos")
+@RequestMapping("/todos")
 public class TodoController {
     private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
 
