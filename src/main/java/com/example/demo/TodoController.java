@@ -45,6 +45,9 @@ public class TodoController {
 
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteTodo(@PathVariable Long id) {
+        logger.info("Delete !!");
+        logger.info(id.toString());
+        logger.info("Delete !!");
         todoRepository.deleteById(id);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
