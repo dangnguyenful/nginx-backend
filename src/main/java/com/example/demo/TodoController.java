@@ -43,7 +43,7 @@ public class TodoController {
         }
     }
 
-    @RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteTodo(@PathVariable Long id) {
         logger.info("Delete !!");
         logger.info(id.toString());
